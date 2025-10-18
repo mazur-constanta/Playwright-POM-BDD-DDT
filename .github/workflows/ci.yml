@@ -31,18 +31,6 @@ jobs:
       - name: Run Playwright tests
         run: npm run test
 
-      - name: List files before Cucumber
-        run: ls -R
-        if: always()
-
-      - name: Run Cucumber tests
-        run: npm run cucumber:report
-        if: always()
-
-      - name: List files after Cucumber
-        run: ls -R
-        if: always()
-
       - name: Generate Allure report
         run: npm run allure:generate
         if: always()
@@ -52,6 +40,10 @@ jobs:
         with:
           name: allure-report
           path: allure-report
+        if: always()
+
+      - name: Run Cucumber tests
+        run: npm run cucumber:report
         if: always()
 
       - name: Upload Cucumber HTML report
