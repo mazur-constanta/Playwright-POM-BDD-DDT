@@ -2,9 +2,9 @@ name: CI
 
 on:
   push:
-    branches: [ "*" ]
+    branches: ["*"]
   pull_request:
-    branches: [ "*" ]
+    branches: ["*"]
 
 jobs:
   test:
@@ -23,24 +23,27 @@ jobs:
         run: npm ci
 
       - name: Install Playwright browsers
-        run: npx playwright install
+        run: npx playwright install --with-deps
 
-      - name: Install Allure commandline
-        run: npm install -g allure-commandline --save-dev
+      - name: Install Playwright Test & Allure Playwright
+        run: npm install --save-dev @playwright/test allure-playwright
 
       - name: Run Playwright tests
         run: npm run test
         if: always()
 
-      - name: Generate Allure report
-        run: allure serve allure-results
-        if: always()
-
-      - name: Upload Allure report artifact
+      - name: Upload Allure results artifact
         uses: actions/upload-artifact@v4
         with:
           name: allure-results
           path: allure-results
+        if: always()
+
+      - name: Upload Allure HTML report artifact (optional)
+        uses: actions/upload-artifact@v4
+        with:
+          name: allure-html-report
+          path: allure-report
         if: always()
 
       - name: Run Cucumber tests
