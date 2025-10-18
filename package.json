@@ -10,7 +10,7 @@
     "allure:report": "allure generate ./allure-results --clean -o ./allure-report && allure open ./allure-report",
     "test:cucumber": "cucumber-js",
     "cucumber:scenario": "npx cucumber-js --tags",
-    "cucumber:report": "cucumber-js --format json:./cucumber-report.json && node scripts/generate-cucumber-html.js"
+    "cucumber:report": "cucumber-js --require-module ts-node/register --format json:./cucumber-report.json && node scripts/generate-cucumber-html.js"
   },
   "keywords": [],
   "author": "",

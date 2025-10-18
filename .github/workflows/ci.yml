@@ -31,8 +31,14 @@ jobs:
       - name: Run Playwright tests
         run: npm run test
 
+      - name: List files before Cucumber
+        run: ls -R
+
       - name: Run Cucumber tests
         run: npm run cucumber:report
+
+      - name: List files after Cucumber
+        run: ls -R
 
       - name: Generate Allure report
         run: npm run allure:generate
