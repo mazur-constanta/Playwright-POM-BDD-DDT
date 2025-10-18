@@ -33,24 +33,30 @@ jobs:
 
       - name: List files before Cucumber
         run: ls -R
+        if: always()
 
       - name: Run Cucumber tests
         run: npm run cucumber:report
+        if: always()
 
       - name: List files after Cucumber
         run: ls -R
+        if: always()
 
       - name: Generate Allure report
         run: npm run allure:generate
+        if: always()
 
       - name: Upload Allure HTML report
         uses: actions/upload-artifact@v4
         with:
           name: allure-report
           path: allure-report
+        if: always()
 
       - name: Upload Cucumber HTML report
         uses: actions/upload-artifact@v4
         with:
           name: cucumber-html-report
           path: cucumber-report.html
+        if: always()
