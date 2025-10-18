@@ -1,8 +1,9 @@
 {
     "default": {
-        "require": ["src/steps/*.ts"],
+        "require": ["src/steps/**/*.ts"],
         "format": ["progress"],
-        "paths": ["src/resources/features/*.feature"],
+        "paths": ["src/resources/features/**/*.feature"],
         "requireModule": ["ts-node/register"]
-    }
+    },
+    "parallel": 2
 }
