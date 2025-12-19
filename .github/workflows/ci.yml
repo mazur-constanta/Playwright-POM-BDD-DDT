@@ -25,15 +25,15 @@ jobs:
       - name: Install Playwright browsers
         run: npx playwright install
 
+      - name: Run Playwright tests
+        run: npm run test
+        if: always()
+
       - name: Install Allure CLI
         run: npm install -g allure-commandline --save-dev
 
       - name: Install Playwright Test & Allure Playwright
         run: npm install --save-dev @playwright/test allure-playwright
-
-      - name: Run Playwright tests
-        run: npm run test
-        if: always()
 
       - name: Generate Allure HTML report
         run: allure generate allure-results -o allure-report --clean
