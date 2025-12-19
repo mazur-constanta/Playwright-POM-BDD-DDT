@@ -23,17 +23,17 @@ jobs:
         run: npm ci
 
       - name: Remove cache and Install Playwright Browsers
-        run: rm -rf ~/.cache/ms-playwright && npx playwright install --with-deps
+        run: npx playwright install --with-deps
+
+      - name: Run Playwright tests
+        run: npm run test
+        if: always()
 
       - name: Install Allure CLI
         run: npm install -g allure-commandline --save-dev
 
       - name: Install Playwright Test & Allure Playwright
         run: npm install --save-dev @playwright/test allure-playwright
-
-      - name: Run Playwright tests
-        run: npm run test
-        if: always()
 
       - name: Download previous Allure history
         uses: actions/download-artifact@v4
